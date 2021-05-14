@@ -1,5 +1,5 @@
-import express from "express";
-import tees from "./tees.js";
+const express = require("express");
+const tees = require("./tees.js");
 
 const api = express.Router();
 
@@ -9,4 +9,4 @@ api.get("/", (req, res) => {
 
 api.use("/tees", tees);
 
-export default api;
+module.exports = api;

@@ -1,12 +1,11 @@
-import express from "express";
-import teesDB from "../tees-DB.js";
+const express = require("express");
+const db = require("./queries.js");
 
 const tees = express.Router();
 
-tees.get("/", (req, res) => {
-  res.json(teesDB);
-});
+tees.get("/", db.getAllTees);
 
+/*
 tees.get("/:id", (req, res) => {
   if (teesDB[`tee${req.params.id}`] != null) {
     res.status(200).send(teesDB[`tee${req.params.id}`]);
@@ -33,5 +32,6 @@ tees.put("/:id", (req, res) => {
     res.status(400).send();
   }
 });
+*/
 
-export default tees;
+module.exports = tees;

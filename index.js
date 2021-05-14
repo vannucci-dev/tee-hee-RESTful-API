@@ -1,5 +1,5 @@
-import express from "express";
-import api from "./api/index.js";
+const express = require("express");
+const api = require("./api/index.js");
 
 const app = express();
 
