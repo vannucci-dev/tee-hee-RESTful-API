@@ -12,33 +12,33 @@ const pool = new Pool({
   port: 5432,
 });
 
-// GET api/tees
-const getAllTees = (req, res) => {
-  pool.query("SELECT * FROM tees", (err, results) => {
+// GET api/products
+const getAllProducts = (req, res) => {
+  pool.query("SELECT * FROM products", (err, results) => {
     if (err) {
       throw err;
     }
     res.status(200).json(results.rows);
   });
 };
-// GET api/tees/:id
-const getSingleTeeById = (req, res) => {
+// GET api/products/:id
+const getProductById = (req, res) => {
   const id = parseInt(req.params.id);
 
-  pool.query("SELECT * FROM tees WHERE id = $1", [id], (err, results) => {
+  pool.query("SELECT * FROM products WHERE id = $1", [id], (err, results) => {
     if (err) {
       throw err;
     }
     res.status(200).json(results.rows);
   });
 };
-//POST api/tees
-const createNewTee = (req, res) => {
-  const { name, available_sizes, available_colors } = req.body;
+//POST api/products
+const addNewProduct = (req, res) => {
+  const { name, price, description, image_link } = req.body;
 
   pool.query(
-    "INSERT INTO tees (name, available_sizes, available_colors) VALUES ($1, $2, $3)",
-    [name, available_sizes, available_colors],
+    "INSERT INTO products (name, price, description, image_link) VALUES ($1, $2, $3, $4)",
+    [name, price, description, image_link],
     (err, results) => {
       if (err) {
         throw err;
@@ -47,13 +47,13 @@ const createNewTee = (req, res) => {
     }
   );
 };
-//PUT api/tees/:id
-const updateTee = (req, res) => {
-  const id = parseInt(req.params.id);
-  const { name, available_sizes, available_colors } = req.body;
+//PUT api/products/:id
+const updateProduct = (req, res) => {
+  const reqId = parseInt(req.params.id);
+  const { name, price, description, image_link } = req.body;
   pool.query(
-    "UPDATE tees SET name = $2, available_sizes = $3, available_colors = $4 WHERE id = $1",
-    [id, name, available_sizes, available_colors],
+    "UPDATE products SET name = $2, available_sizes = $3, available_colors = $4 WHERE id = $1",
+    [reqId, name, price, description, image_link],
     (err, results) => {
       if (err) {
         throw err;
@@ -62,10 +62,10 @@ const updateTee = (req, res) => {
     }
   );
 };
-//DELETE api/tees/:id
-const deleteTee = (req, res) => {
+//DELETE api/products/:id
+const deleteProduct = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query("DELETE FROM tees WHERE id = $1", [id], (err, results) => {
+  pool.query("DELETE FROM products WHERE id = $1", [id], (err, results) => {
     if (err) {
       throw err;
     }
@@ -74,9 +74,9 @@ const deleteTee = (req, res) => {
 };
 
 module.exports = {
-  getAllTees,
-  getSingleTeeById,
-  createNewTee,
-  updateTee,
-  deleteTee,
+  getAllProducts,
+  getProductById,
+  addNewProduct,
+  updateProduct,
+  deleteProduct,
 };
