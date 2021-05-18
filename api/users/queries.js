@@ -25,7 +25,7 @@ const getAllUsers = (req, res) => {
 const getUserById = (req, res) => {
   const id = parseInt(req.params.id);
 
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (err, results) => {
+  pool.query("SELECT * FROM users WHERE user_id = $1", [id], (err, results) => {
     if (err) {
       throw err;
     }
@@ -54,7 +54,7 @@ const updateUser = (req, res) => {
   const { email, password, first_name, last_name, google_json, facebook_json } =
     req.body;
   pool.query(
-    "UPDATE users SET email = $2, password = $3, first_name = $4, last_name = $5, google_json = $6, facebook_json = $7 WHERE id = $1",
+    "UPDATE users SET email = $2, password = $3, first_name = $4, last_name = $5, google_json = $6, facebook_json = $7 WHERE user_id = $1",
     [reqId, email, password, first_name, last_name, google_json, facebook_json],
     (err, results) => {
       if (err) {
@@ -67,7 +67,7 @@ const updateUser = (req, res) => {
 //DELETE api/users/:id
 const deleteUser = (req, res) => {
   const id = parseInt(req.params.id);
-  pool.query("DELETE FROM users WHERE id = $1", [id], (err, results) => {
+  pool.query("DELETE FROM users WHERE user_id = $1", [id], (err, results) => {
     if (err) {
       throw err;
     }

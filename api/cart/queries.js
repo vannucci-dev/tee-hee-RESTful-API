@@ -52,7 +52,7 @@ const updateCart = (req, res) => {
   const reqId = parseInt(req.params.id);
   const { user_id } = req.body;
   pool.query(
-    "UPDATE carts SET user_id = $2, modified = now() WHERE id = $1",
+    "UPDATE carts SET user_id = $2 WHERE id = $1",
     [reqId, user_id],
     (err, results) => {
       if (err) {
