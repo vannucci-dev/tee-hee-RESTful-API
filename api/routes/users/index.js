@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("./queries.js");
+const db = require("../../config/queries/users_queries");
 
 const users = express.Router();
 

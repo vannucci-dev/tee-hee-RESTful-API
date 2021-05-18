@@ -1,7 +1,7 @@
 const express = require("express");
-const products = require("./products");
-const users = require("./users");
-const carts = require("./cart");
+const products = require("./routes/products");
+const users = require("./routes/users");
+const carts = require("./routes/cart");
 
 const api = express.Router();
 

@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("./queries.js");
+const db = require("../../config/queries/products_queries");
 
 const products = express.Router();
 
