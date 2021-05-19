@@ -1,16 +1,4 @@
-const Pool = require("pg").Pool;
-
-//configuration details in production would be kept in a separate file
-//with restrictive permissions that is not accessible from version control
-//configuration here is for demo purpose
-
-const pool = new Pool({
-  user: "api_user",
-  host: "localhost",
-  database: "api",
-  password: "password",
-  port: 5432,
-});
+const pool = require("../dbConfig");
 
 // GET api/products
 const getAllProducts = (req, res) => {

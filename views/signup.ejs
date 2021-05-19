@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul>
+        <% if(typeof errors != 'undefined') { %> <% errors.forEach(error=>{ %>
+            <li> <%=error.message%> </li>
+            <% }) %> <% } %>
+    </ul>
+    <form action="/api/signup" method="post">
+        <div>
+            <label>First Name:</label>
+            <input type="text" id="first_name" name="first_name"required/>
+        </div>
+        <div>
+            <label>Last Name:</label>
+            <input type="text" id="last_name" name="last_name"required/>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" id="email" name="email"required/>
+        </div>
+        <div>
+            <label>Username:</label>
+            <input type="text" id="username" name="username" required/>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" id="password" name="password"required/>
+        </div>
+        <div>
+            <label>Confirm Password:</label>
+            <input type="password" id="password2" name="password2"required/>
+        </div>
+        <div>
+            <input type="submit" value="signup"/>
+        </div>
+    </form>
+
+    <a href='/api/login'>Already have an account? Login here.</a>
+</body>
+</html>
