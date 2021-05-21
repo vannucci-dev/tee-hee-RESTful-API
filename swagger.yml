@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "Documentation for Tee-Hee PERN e-commerce RESTful API. \nTo check the user authentication features, please visit [this link](http://localhost:3000/api/auth/login) \n\n 
+  description: "Documentation for Tee-Hee PERN e-commerce RESTful API. \nTo check the user authentication features, please visit [this link](https://salty-ridge-11669.herokuapp.com/api/auth/login) \n\n 
   This project uses PostgreSQL for the database and NodeJS with Express for the server side.\n\n
   To check the funcionality, click on one of the paths for a GET/POST/PUT/DELETE operation and insert the correct parameters/request body. \n
   For more information, please check the repository on GitHub at [https://github.com/vannucci-dev/tee-hee-RESTful-API](https://github.com/vannucci-dev/tee-hee-RESTful-API).r"
