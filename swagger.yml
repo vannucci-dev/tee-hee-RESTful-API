@@ -8,7 +8,7 @@ info:
   title: "Tee Hee REST API"
 basePath: /api
 schemes:
-  - http
+  - https
 paths:
   /products:
     post:
