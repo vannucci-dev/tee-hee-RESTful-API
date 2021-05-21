@@ -1,3 +1,5 @@
+const { Client } = require("pg");
+
 (async () => {
   const usersTable = `
   CREATE TABLE users (
