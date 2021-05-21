@@ -22,12 +22,11 @@ const getUserById = (req, res) => {
 };
 //POST api/users
 const addNewUser = (req, res) => {
-  const { email, password, first_name, last_name, google_json, facebook_json } =
-    req.body;
+  const { email, password, first_name, last_name, username } = req.body;
 
   pool.query(
-    "INSERT INTO users (email, password, first_name, last_name, google_json, facebook_json) VALUES ($1, $2, $3, $4, $5, $6)",
-    [email, password, first_name, last_name, google_json, facebook_json],
+    "INSERT INTO users (email, password, first_name, last_name, username) VALUES ($1, $2, $3, $4, $5)",
+    [email, password, first_name, last_name, username],
     (err, results) => {
       if (err) {
         throw err;
@@ -39,11 +38,10 @@ const addNewUser = (req, res) => {
 //PUT api/users/:id
 const updateUser = (req, res) => {
   const reqId = parseInt(req.params.id);
-  const { email, password, first_name, last_name, google_json, facebook_json } =
-    req.body;
+  const { email, password, first_name, last_name, username } = req.body;
   pool.query(
-    "UPDATE users SET email = $2, password = $3, first_name = $4, last_name = $5, google_json = $6, facebook_json = $7 WHERE user_id = $1",
-    [reqId, email, password, first_name, last_name, google_json, facebook_json],
+    "UPDATE users SET email = $2, password = $3, first_name = $4, last_name = $5, username = $6 WHERE user_id = $1",
+    [reqId, email, password, first_name, last_name, username],
     (err, results) => {
       if (err) {
         throw err;

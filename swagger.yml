@@ -1,0 +1,435 @@
+swagger: "2.0"
+info:
+  description: "Documentation for Tee-Hee PERN e-commerce RESTful API. \nTo check the user authentication features, please visit [this link](http://localhost:3000/api/auth/login) \n\n 
+  This project uses PostgreSQL for the database and NodeJS with Express for the server side.\n\n
+  To check the funcionality, click on one of the paths for a GET/POST/PUT/DELETE operation and insert the correct parameters/request body. \n
+  For more information, please check the repository on GitHub at [https://github.com/vannucci-dev/tee-hee-RESTful-API](https://github.com/vannucci-dev/tee-hee-RESTful-API).r"
+  version: "1.0.0"
+  title: "Tee Hee REST API"
+basePath: /api
+schemes:
+  - http
+paths:
+  /products:
+    post:
+      tags:
+        - Products
+      summary: Add a new product to the DB
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: addProduct
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Product object to add to the DB.
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+      responses:
+        "405":
+          description: Invalid input
+        "201":
+          description: Created
+    get:
+      tags:
+        - Products
+      summary: Request a list of all products
+      description: ""
+      operationId: getAllProducts
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArrayOfProducts"
+        "505":
+          description: Server Error
+  /products/{product_id}:
+    get:
+      tags:
+        - Products
+      summary: Finds product by ID
+      description: Find a specific product by indicating the product ID.
+      operationId: findProductById
+      produces:
+        - application/json
+      parameters:
+        - name: product_id
+          in: path
+          description: The specific ID of the product you want to query for.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+        "404":
+          description: ID not valid.
+    put:
+      tags:
+        - Products
+      summary: Update a product in the DB
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: updateProduct
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Product object to update in the DB.
+          required: true
+          schema:
+            $ref: "#/definitions/Product"
+        - in: path
+          name: product_id
+          description: The specific ID of the product you want to amend.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "405":
+          description: Invalid input
+        "200":
+          description: Updated
+    delete:
+      tags:
+        - Products
+      summary: Delete product by ID
+      description: Delete a specific product by indicating the product ID.
+      operationId: deleteProductById
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: product_id
+          description: The specific ID of the product you want to delete.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+        "404":
+          description: ID not valid.
+  /orders:
+    post:
+      tags:
+        - Orders
+      summary: Add a new order to the DB
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: addOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Order object to add to the DB.
+          required: true
+          schema:
+            $ref: "#/definitions/Order"
+      responses:
+        "405":
+          description: Invalid input
+        "201":
+          description: Created
+    get:
+      tags:
+        - Orders
+      summary: Request a list of all orders
+      description: ""
+      operationId: getAllOrders
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArrayOfOrders"
+        "505":
+          description: Server Error
+  /orders/{order_id}:
+    get:
+      tags:
+        - Orders
+      summary: Finds order by ID
+      description: Find a specific order by indicating the product ID.
+      operationId: findOrderById
+      produces:
+        - application/json
+      parameters:
+        - name: order_id
+          in: path
+          description: The specific ID of the order you want to query for.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Order"
+        "404":
+          description: ID not valid.
+    put:
+      tags:
+        - Orders
+      summary: Update am order in the DB
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: updateOrder
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Order object to update in the DB.
+          required: true
+          schema:
+            $ref: "#/definitions/Order"
+        - in: path
+          name: order_id
+          description: The specific ID of the order you want to update.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "405":
+          description: Invalid input
+        "200":
+          description: Updated
+    delete:
+      tags:
+        - Orders
+      summary: Delete order by ID
+      description: Delete a specific order by indicating the order ID.
+      operationId: deleteOrderById
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: order_id
+          description: The specific ID of the order you want to delete.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Order"
+        "404":
+          description: ID not valid.
+  /carts:
+    post:
+      tags:
+        - Carts
+      summary: Add a new cart to the DB
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: addCart
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Cart object to add to the DB.
+          required: true
+          schema:
+            $ref: "#/definitions/Cart"
+      responses:
+        "405":
+          description: Invalid input
+        "201":
+          description: Created
+    get:
+      tags:
+        - Carts
+      summary: Request a list of all carts
+      description: ""
+      operationId: getAllCarts
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArrayOfCarts"
+        "505":
+          description: Server Error
+  /carts/{cart_id}:
+    get:
+      tags:
+        - Carts
+      summary: Finds cart by ID
+      description: Find a specific cart by indicating the cart ID.
+      operationId: findCartById
+      produces:
+        - application/json
+      parameters:
+        - name: cart_id
+          in: path
+          description: The specific ID of the cart you want to query for.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Cart"
+        "404":
+          description: ID not valid.
+    put:
+      tags:
+        - Carts
+      summary: Update a cart in the DB
+      x-swagger-router-controller: SampleController
+      description: ""
+      operationId: updateCart
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Cart object to update in the DB.
+          required: true
+          schema:
+            $ref: "#/definitions/Cart"
+        - in: path
+          name: cart_id
+          description: The specific ID of the cart you want to query for.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "405":
+          description: Invalid input
+        "200":
+          description: Updated
+    delete:
+      tags:
+        - Carts
+      summary: Delete cart by ID
+      description: Delete a specific cart by indicating the cart ID.
+      operationId: deleteCartById
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: cart_id
+          description: The specific ID of the cart you want to delete.
+          required: true
+          type: integer
+          format: "int64"
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Cart"
+        "404":
+          description: ID not valid.
+
+definitions:
+  Product:
+    required:
+      - name
+      - price
+      - description
+      - image_link
+    properties:
+      name:
+        type: string
+        example: Test Product Name
+      price:
+        type: integer
+        format: int64
+        example: 10.00
+      description:
+        type: string
+        example: Description of the product.
+      image_link:
+        type: string
+        example: http://example.png
+  Order:
+    required:
+      - total
+      - status
+      - user_id
+    properties:
+      total:
+        type: integer
+        format: int64
+        example: 1234
+      status:
+        type: string
+        example: pending
+      user_id:
+        type: integer
+        format: int64
+        example: 14
+  Cart:
+    required:
+      - user_id
+    properties:
+      user_id:
+        type: integer
+        format: int64
+        example: 14
+components:
+  schemas:
+    ArrayOfProducts:
+      type: array
+      items:
+        $ref: "#/definitions/Product"
+    ArrayOfOrders:
+      type: array
+      items:
+        $ref: "#/definitions/Order"
+    ArrayOfCarts:
+      type: array
+      items:
+        $ref: "#/definitions/Cart"
+externalDocs:
+  description: If you want to check which other projects I am working on, or if you want to get in contact, click here.
+  url: "http://vannucci-dev.com"

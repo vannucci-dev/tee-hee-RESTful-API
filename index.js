@@ -1,17 +1,15 @@
 const express = require("express");
-const api = require("./api/index.js");
 const app = express();
+const api = require("./api/index.js");
+const port = parseInt(process.env.PORT, 10) || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Welcome");
-});
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.use("/api", api);
 
 app.set("view engine", "ejs");
 
-const port = 3000;
-
 app.listen(port, () => {
-  console.log("Server started");
+  console.log("Server started on port " + port);
 });

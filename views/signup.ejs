@@ -13,7 +13,7 @@
             <li> <%=error.message%> </li>
             <% }) %> <% } %>
     </ul>
-    <form action="/api/signup" method="post">
+    <form action="/api/auth/signup" method="post">
         <div>
             <label>First Name:</label>
             <input type="text" id="first_name" name="first_name"required/>
@@ -43,6 +43,6 @@
         </div>
     </form>
 
-    <a href='/api/login'>Already have an account? Login here.</a>
+    <a href='/api/auth/login'>Already have an account? Login here.</a>
 </body>
 </html>

@@ -1,0 +1,124 @@
+openapi: "3.0.0"
+
+info:
+  description: "Documentation for Tee-Hee PERN e-commerce RESTful API"
+  version: "1.0.0"
+  title: "Tee Hee REST API"
+
+schemes:
+  - http
+
+host: localhost:3000
+
+basePath: "/api"
+
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - Auth
+      summary: "Register a new user"
+      description: "Register a new user"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        200:
+          description: New user added.
+          schema:
+            type: object
+            items:
+        400:
+          description: Error in adding user. Probably syntax.
+          schema:
+            type: object
+            items:
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            items:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: "Login to your account"
+      description: "Login to your account"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        200:
+          description: Succesfuly logged in.
+          schema:
+            type: object
+            items:
+        401:
+          description: Wrong credentials.
+          schema:
+            type: object
+            items:
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            items:
+  /users/{userId}:
+    get:
+      tags:
+        - Auth
+      summary: "Get specific user record"
+      description: "Get specific user record"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        200:
+          description: User succesfully loaded.
+          schema:
+            type: object
+            items:
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            items:
+    put:
+      tags:
+        - Auth
+      summary: "Update specific user record"
+      description: "Update specific user record"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        200:
+          description: User succesfully updated
+          schema:
+            type: object
+            items:
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            items:
+  /products:
+    get:
+      tags:
+        - Products
+      summary: "Get a list of all the available products"
+      description: "Get a list of all the available products"
+      produces:
+        - "application/json"
+      parameters:
+      responses:
+        200:
+          description: Request accepted.
+          schema:
+            type: object
+            items:
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            items:
