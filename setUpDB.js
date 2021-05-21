@@ -2,7 +2,7 @@ const { Client } = require("pg");
 
 (async () => {
   const usersTable = `
-  CREATE TABLE users (
+  CREATE TABLE IF NOT EXISTS users (
     user_id integer PRIMARY KEY,
     email character varying(50) NOT NULL,
     password text NOT NULL,
@@ -14,7 +14,7 @@ const { Client } = require("pg");
   `;
 
   const productsTable = `
-  CREATE TABLE products (
+  CREATE TABLE IF NOT EXISTS products (
     product_id integer PRIMARY KEY,
     name character varying(50) NOT NULL,
     price money NOT NULL,
@@ -25,7 +25,7 @@ const { Client } = require("pg");
   `;
 
   const ordersTable = `
-  CREATE TABLE orders (
+  CREATE TABLE IF NOT EXISTS orders (
     order_id integer PRIMARY KEY,
     total integer NOT NULL,
     status character varying(50) NOT NULL,
@@ -37,7 +37,7 @@ const { Client } = require("pg");
   `;
 
   const orderItemsTable = `
-  CREATE TABLE order_items (
+  CREATE TABLE IF NOT EXISTS order_items (
     order_items_id integer PRIMARY KEY,
     created date NOT NULL,
     order_id integer NOT NULL REFERENCES orders(order_id),
@@ -51,7 +51,7 @@ const { Client } = require("pg");
   `;
 
   const cartsTable = `
-  CREATE TABLE carts (
+  CREATE TABLE IF NOT EXISTS carts (
     cart_id integer PRIMARY KEY,
     user_id integer NOT NULL REFERENCES users(user_id),
     modified timestamp with time zone NOT NULL DEFAULT now(),
@@ -61,7 +61,7 @@ const { Client } = require("pg");
   `;
 
   const cartItemsTable = `
-  CREATE TABLE cart_items (
+  CREATE TABLE IF NOT EXISTS cart_items (
     cart_id integer REFERENCES carts(cart_id),
     product_id integer REFERENCES products(product_id),
     quantity integer NOT NULL,
