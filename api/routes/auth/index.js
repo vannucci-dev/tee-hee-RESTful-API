@@ -121,10 +121,10 @@ auth.post("/signup", async (req, res) => {
   }
 });
 
-auth.post(
+auth.get(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/api/auth/ciao",
+    successRedirect: "/api/auth/dashboard",
     failureRedirect: "/api/auth/login",
     failureFlash: true,
   })
