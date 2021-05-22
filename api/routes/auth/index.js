@@ -28,9 +28,7 @@ auth.use(flash());
 
 const checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.redirect(
-      "https://salty-ridge-11669.herokuapp.com/api/auth/dashboard"
-    );
+    return res.redirect("/api/auth/dashboard");
   }
   next();
 };
@@ -39,7 +37,7 @@ const checkNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   }
-  res.redirect("https://salty-ridge-11669.herokuapp.com/api/auth/login");
+  res.redirect("/api/auth/login");
 };
 
 auth.get("/", (req, res) => {
@@ -125,11 +123,8 @@ auth.post("/signup", async (req, res) => {
 
 auth.post(
   "/login",
-  passport.authenticate("local", {
-    successRedirect:
-      "https://salty-ridge-11669.herokuapp.com/api/auth/dashboard",
-    failureRedirect: "https://salty-ridge-11669.herokuapp.com/api/auth/login",
-    failureFlash: true,
+  passport.authenticate("local", (req, res) => {
+    res.redirect("/api/auth/dashboard");
   })
 );
 
