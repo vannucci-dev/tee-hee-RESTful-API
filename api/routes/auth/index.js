@@ -124,8 +124,9 @@ auth.post("/signup", async (req, res) => {
 auth.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/api/auth/dashboard",
-    failureRedirect: "/api/auth/login",
+    successRedirect:
+      "https://salty-ridge-11669.herokuapp.com/api/auth/dashboard",
+    failureRedirect: "https://salty-ridge-11669.herokuapp.com/api/auth/login",
     failureFlash: true,
   })
 );
