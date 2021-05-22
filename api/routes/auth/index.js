@@ -41,7 +41,7 @@ const checkNotAuthenticated = (req, res, next) => {
 };
 
 auth.get("/", (req, res) => {
-  res.render("home");
+  res.redirect("/api/auth/login");
 });
 auth.get("/login", checkAuthenticated, (req, res) => {
   res.render("login");

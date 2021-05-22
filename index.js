@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.enable("trust proxy");
 
 app.use("/api", api);
 
