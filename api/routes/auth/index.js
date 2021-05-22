@@ -123,8 +123,10 @@ auth.post("/signup", async (req, res) => {
 
 auth.post(
   "/login",
-  passport.authenticate("local", (req, res) => {
-    res.redirect("/api/auth/dashboard");
+  passport.authenticate("local", {
+    successRedirect: "/api/auth/ciao",
+    failureRedirect: "/api/auth/login",
+    failureFlash: true,
   })
 );
 
