@@ -28,7 +28,9 @@ auth.use(flash());
 
 const checkAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.redirect("/api/auth/dashboard");
+    return res.redirect(
+      "https://salty-ridge-11669.herokuapp.com/api/auth/dashboard"
+    );
   }
   next();
 };
@@ -37,7 +39,7 @@ const checkNotAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   }
-  res.redirect("/api/auth/login");
+  res.redirect("https://salty-ridge-11669.herokuapp.com/api/auth/login");
 };
 
 auth.get("/", (req, res) => {
