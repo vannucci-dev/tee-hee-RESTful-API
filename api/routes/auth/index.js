@@ -50,7 +50,7 @@ auth.get("/signup", checkAuthenticated, (req, res) => {
   res.render("signup");
 });
 auth.get("/dashboard", checkNotAuthenticated, (req, res) => {
-  res.render("dashboard");
+  res.render("dashboard", { user: req.user.first_name });
 });
 
 auth.post("/signup", async (req, res) => {
